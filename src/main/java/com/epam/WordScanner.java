@@ -44,7 +44,6 @@ public class WordScanner implements Subject {
     private Scanner getScanner() {
         Scanner scanner = null;
         try {
-            URL resource = this.getClass().getResource(fileName);
             scanner = new Scanner(new File(this.getClass().getResource( fileName ).toURI()));
         } catch (FileNotFoundException | URISyntaxException e) {
             LOGGER.error("Scanner initialization failed", e);
@@ -56,8 +55,6 @@ public class WordScanner implements Subject {
         Scanner scanner = getScanner();
         while(scanner != null && scanner.hasNext()) {
             String word = scanner.next();
-            //LOGGER.info(word);
-            //System.out.println(word);
             currentWord = word;
             notifyObservers();
         }
